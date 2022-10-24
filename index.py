@@ -1,6 +1,6 @@
 from flask import Flask, render_template,session,redirect,url_for
 from flask_wtf import FlaskForm
-from wtforms import StringField, Booleanfield, DateTimeField, RadioField, SelectField,TextField, SubmitField, TextAreaField
+from wtforms import StringField, BooleanField, DateTimeField, RadioField, SelectField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired
 
 app = Flask(__name__)
@@ -10,7 +10,7 @@ app.config['SECRET_KEY']= 'mykey'
 
 class InfoForm(FlaskForm):
     breed = StringField('What breed are you?',validators=[DataRequired()])
-    neutered = Booleanfield('Have you been neutered?')
+    neutered = BooleanField('Have you been neutered?')
     mood = RadioField('Please choose your mood:',choices=[('mood_one','Happy'),('mood_two','Excited')])
     
     food_choice = SelectField(u'Pick your favorite food:', choices=[('chi','Chicken'),('bf','Beef'),('fish',"Fish")])
@@ -34,8 +34,8 @@ def index():
             
             
             
-app.route('/thankYou')
-def thankYou():
+@app.route('/thankyou')
+def thankyou():
     return render_template('thankYou.html') 
 
 if __name__ == '__main__':
